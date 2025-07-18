@@ -38,7 +38,4 @@ Este backend foi criado para servir um painel de finanças onde o usuário pode 
 - O token é enviado via `Authorization: Bearer <token>`.
 - O middleware `isAuthenticated` extrai o ID do usuário do token e injeta em `req.user_id`.
 
----
-
-## 🗂️ Estrutura de pastas
 
