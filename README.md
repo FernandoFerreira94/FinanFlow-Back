@@ -1,4 +1,4 @@
-# 💰 Dev Finas - Backend
+# 💰 Finan Flow - Backend
 
 API RESTful para controle de finanças pessoais desenvolvida com **Node.js**, **Express**, **Prisma** e **PostgreSQL**.  
 Este backend foi criado para servir um painel de finanças onde o usuário pode gerenciar suas despesas (fixas, à vista e parceladas).
