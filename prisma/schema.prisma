@@ -15,41 +15,53 @@ datasource db {
 }
 
 model User {
-  id        String     @id @default(uuid())
-  name      String
-  email     String     @unique
-  password  String     // hash
-  expenses  Expense[]
-  categories Category[]
-  createdAt DateTime   @default(now())
-}
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  password      String
+  expenses      Expense[]
+  notifications Notification[]
 
-model Category {
-  id        String     @id @default(uuid())
-  name      String
-  userId    String
-  user      User       @relation(fields: [userId], references: [id])
-  expenses  Expense[]
-  createdAt DateTime   @default(now())
+  @@map("users")
 }
 
 model Expense {
-  id               String     @id @default(uuid())
-  title            String
-  amount           Decimal    @db.Decimal(10, 2)
-  type             ExpenseType
-  date             DateTime
-  totalInstallments Int?     
-  currentInstallment Int?    
-  categoryId       String
-  userId           String
-  user             User       @relation(fields: [userId], references: [id])
-  category         Category   @relation(fields: [categoryId], references: [id])
-  createdAt        DateTime   @default(now())
+  id            String      @id @default(uuid())
+  name          String
+  amount        Float
+  purchaseDate  DateTime?   // NOVO campo: quando a despesa foi criada ou a compra feita
+  dueDate       DateTime    // data para pagar (vencimento)
+  paymentDate   DateTime?   // quando foi paga de fato
+  type          ExpenseType
+  installments  Int?        // só se for parcelada
+  paid          Boolean     @default(false)
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  createdAt     DateTime    @default(now())
+  notifications Notification[]
+  @@map("expenses")
 }
 
 enum ExpenseType {
-  oneTime      // à vista
-  installment  // parcelado
-  fixed        // fixo
+  FIXED
+  INSTALLMENT
+  SINGLE
+}
+
+model Notification {
+  id   String  @id @default(uuid())
+  read Boolean @default(false)
+  paid Boolean @default(false)
+
+  // Relacionamento com User
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  // Relacionamento com Expense
+  expense   Expense @relation(fields: [expenseId], references: [id])
+  expenseId String
+
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
 }
