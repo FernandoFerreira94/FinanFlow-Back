@@ -15,7 +15,10 @@ export default async function RemoveExpenseController(
 
     const removeExpense = await RemoveExpenseService(expenseId);
 
-    return res.status(200).json(removeExpense);
+    return res.status(200).json({
+      message: "Expense removed successfully.",
+      expense: removeExpense,
+    });
   } catch (error) {
     console.error("Error removing expense:", error);
     return res.status(500).json({ error: "Internal server error" });

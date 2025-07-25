@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import UpdadeExpensePaidService from "../../services/expense/UpdadeExpensePaidService";
+import UpdatedExpensePaidService from "../../services/expense/UpdateExpensePaidService";
 
-export default async function EditExpensePaidController(
+export default async function UpdatedExpensePaidController(
   req: Request,
   res: Response
 ) {
@@ -14,7 +14,7 @@ export default async function EditExpensePaidController(
       return res.status(400).json({ error: "Invalid paid status" });
     }
 
-    const updateExpense = await UpdadeExpensePaidService({ expenseId, paid });
+    const updateExpense = await UpdatedExpensePaidService({ expenseId, paid });
 
     return res.status(200).json(updateExpense);
   } catch (error) {

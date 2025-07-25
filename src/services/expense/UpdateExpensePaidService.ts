@@ -5,7 +5,7 @@ interface UpdateProps {
   paid: boolean;
 }
 
-export default async function UpdadeExpensePaid({
+export default async function UpdatedExpensePaidService({
   expenseId,
   paid,
 }: UpdateProps) {
