@@ -20,10 +20,10 @@ export default async function CreateUserController(
     return;
   } catch (error) {
     if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ message: error.message });
       return;
     }
-    res.status(500).json({ error: "Erro interno no servidor" });
+    res.status(500).json({ message: "Erro interno no servidor" });
     return;
   }
 }

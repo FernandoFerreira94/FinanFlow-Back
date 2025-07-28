@@ -15,8 +15,8 @@ export default async function AuthUserController(req: Request, res: Response) {
     return res.json(authUser);
   } catch (error) {
     if (error instanceof Error) {
-      return res.status(400).json({ error: error.message });
+      return res.status(400).json({ message: error.message });
     }
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }

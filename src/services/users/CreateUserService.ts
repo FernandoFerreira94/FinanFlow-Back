@@ -19,7 +19,7 @@ export default async function CreateUserService({
   });
 
   if (userExist) {
-    throw new Error("Esse usuario já possue uma conta");
+    throw new Error("Email já cadastrado");
   }
 
   const passwordHash = await hash(password, 8);
