@@ -24,6 +24,12 @@ export default async function CreateUserService({
 
   const passwordHash = await hash(password, 8);
 
+  const regex = /^[A-Za-zÀ-ÿ\s]+$/;
+
+  if (!regex.test(name)) {
+    throw new Error("Nome inválido, apenas letras são permitidas.");
+  }
+
   try {
     const user = await prismaClient.user.create({
       data: {
