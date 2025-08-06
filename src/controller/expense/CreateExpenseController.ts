@@ -16,6 +16,7 @@ export default async function CreateExpenseController(
       installments,
       paymentDate,
       paid,
+      purchaseDate, // <--- ADICIONAR AQUI
     } = req.body;
 
     const expense = await CreateExpenseService({
@@ -27,6 +28,7 @@ export default async function CreateExpenseController(
       installments,
       paymentDate,
       paid,
+      purchaseDate, // <--- E AQUI
     });
 
     return res.status(201).json(expense);

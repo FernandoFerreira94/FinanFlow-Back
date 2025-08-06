@@ -41,6 +41,7 @@ export default async function CreateUserService({
         id: true,
         name: true,
         email: true,
+        password: false,
       },
     });
     return user;

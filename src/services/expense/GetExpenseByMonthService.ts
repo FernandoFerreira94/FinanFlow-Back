@@ -18,6 +18,7 @@ export default async function GetExpenseByMonthService({
     // Busca todas as despesas do usuário pelo ID dentro do mês e ano especificados
     where: {
       userId,
+      paid: false,
       dueDate: {
         gte: startDate,
         lte: endDate,

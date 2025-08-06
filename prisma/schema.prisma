@@ -38,6 +38,8 @@ model Expense {
   user          User        @relation(fields: [userId], references: [id])
   userId        String
   createdAt     DateTime    @default(now())
+  installmentNumber  Int?
+  totalInstallments  Int?
   notifications Notification[]
   @@map("expenses")
 }
@@ -45,7 +47,6 @@ model Expense {
 enum ExpenseType {
   FIXED
   INSTALLMENT
-  SINGLE
 }
 
 model Notification {

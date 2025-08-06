@@ -54,14 +54,14 @@ router.get("/all/:userId", isAuthenticated, GetAllExpenseController);
 router.get("/paid/:userId", isAuthenticated, GetPaidExpenseController);
 router.get("/unpaid/:userId", isAuthenticated, GetUnpaidExpenseController);
 router.get(
-  "/expense/:userId/:month/:year",
+  "/month/:month/:year/:userId",
   isAuthenticated,
   GetExpensesByMonthController
 );
 
 //  EXPENSES PUT
 router.put(
-  "/update/expense/:expenseId/paid",
+  "/update/expense/:expenseId",
   isAuthenticated,
   UpdadedExpensePaidController
 );
