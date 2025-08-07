@@ -15,8 +15,17 @@ export default async function UpdatedExpensePaidService({
     },
     data: {
       paid,
+      paymentDate: paid ? new Date() : null,
     },
   });
 
-  return expensePaid;
+  // Formatando a data se ela existir
+  const formattedDate = expensePaid.paymentDate
+    ? new Date(expensePaid.paymentDate).toLocaleDateString("pt-BR")
+    : null;
+
+  return {
+    ...expensePaid,
+    paymentDate: formattedDate,
+  };
 }
