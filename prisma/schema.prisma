@@ -14,17 +14,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// tabela User
 model User {
   id            String         @id @default(uuid())
   name          String
   email         String         @unique
   password      String
   expenses      Expense[]
-  notifications Notification[]
+
 
   @@map("users")
 }
 
+// tabela Despesas
 model Expense {
   id            String      @id @default(uuid())
   name          String
@@ -35,34 +37,19 @@ model Expense {
   type          ExpenseType
   installments  Int?        // só se for parcelada
   paid          Boolean     @default(false)
+  read          Boolean     @default(false)
   user          User        @relation(fields: [userId], references: [id])
   userId        String
   createdAt     DateTime    @default(now())
   installmentNumber  Int?
   totalInstallments  Int?
-  notifications Notification[]
+ 
   @@map("expenses")
 }
 
+// Tipo da despesas
 enum ExpenseType {
   FIXED
   INSTALLMENT
 }
 
-model Notification {
-  id   String  @id @default(uuid())
-  read Boolean @default(false)
-  paid Boolean @default(false)
-
-  // Relacionamento com User
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-
-  // Relacionamento com Expense
-  expense   Expense @relation(fields: [expenseId], references: [id])
-  expenseId String
-
-  createdAt DateTime @default(now())
-
-  @@map("notifications")
-}

@@ -16,6 +16,6 @@ export default async function DetailUserController(
     const user = await DetailUserService(user_id);
     return res.json(user);
   } catch (error) {
-    return res.status(404).json({ error: "Ops Erro no controller" });
+    return res.status(404).json({error: error.message });
   }
 }

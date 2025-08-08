@@ -23,7 +23,7 @@ export default async function CreateUserController(
       res.status(400).json({ message: error.message });
       return;
     }
-    res.status(500).json({ message: "Erro interno no servidor" });
+    res.status(500).json({error: error.message });
     return;
   }
 }

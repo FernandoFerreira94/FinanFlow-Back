@@ -10,6 +10,7 @@ import DetailUserController from "./controller/users/DetailUserController";
 import UpdatedPasswordUserController from "./controller/users/UpdatedPasswordUserController";
 import UpdatedNameController from "./controller/users/UpdatedNameController";
 import RemoveUserController from "./controller/users/RemoveUserController";
+import LoginGoogleController from "./controller/users/LoginGoogleController";
 
 // EXPENSE
 import CreateExpenseController from "./controller/expense/CreateExpenseController";
@@ -19,12 +20,8 @@ import GetPaidExpenseController from "./controller/expense/GetPaidExpenseControl
 import GetUnpaidExpenseController from "./controller/expense/GetUnpaidExpenseController";
 import RemoveExpenseController from "./controller/expense/RemoveExpenseController";
 import UpdadedExpensePaidController from "./controller/expense/UpdatedExpensePaidController";
-
-// NOTIFICATION
-import CreateNotificationController from "./controller/notification/CreateNotificationController";
-import GetNotificationController from "./controller/notification/GetNotificationController";
-import UpdatedNotificationController from "./controller/notification/UpdatedNotificationController";
-import RemoveNotificationController from "./controller/notification/RemoveNotificationController";
+import GetPantryExpenseController from "./controller/expense/GetPantryExpenseController";
+import UpdateReadExpenseController from "./controller/expense/UpdateReadExpenseController";
 
 const router = Router();
 
@@ -33,6 +30,7 @@ const router = Router();
 //  USERS POST
 router.post("/users", CreateUserController);
 router.post("/session", AuthUserController);
+router.post("/auth/google", LoginGoogleController);
 
 //  USERS GET
 router.get("/user", isAuthenticated, DetailUserController);
@@ -58,6 +56,11 @@ router.get(
   isAuthenticated,
   GetExpensesByMonthController
 );
+router.get(
+  "/notification/:userId",
+  isAuthenticated,
+  GetPantryExpenseController
+);
 
 //  EXPENSES PUT
 router.put(
@@ -65,25 +68,13 @@ router.put(
   isAuthenticated,
   UpdadedExpensePaidController
 );
+router.put(
+  "/update/read/:userId/:expenseId",
+  isAuthenticated,
+  UpdateReadExpenseController
+);
 
 //  EXPENSES DELETE
 router.delete("/expense/:expenseId", isAuthenticated, RemoveExpenseController);
 
-//****ROUTER NOTIFICATION****
-
-//  NOTIFICATION POST
-router.post("/notification", isAuthenticated, CreateNotificationController);
-
-//  NOTIFICATION GET
-router.get("/notification", isAuthenticated, GetNotificationController);
-
-//  NOTIFICATION PUT
-router.put("/notification", isAuthenticated, UpdatedNotificationController);
-
-// NOTIFICATION DELETE
-router.delete(
-  "/notification/:notificationId",
-  isAuthenticated,
-  RemoveNotificationController
-);
 export { router };
