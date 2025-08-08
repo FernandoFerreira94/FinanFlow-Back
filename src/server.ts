@@ -28,7 +28,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.get("/", (req, res) => {
   res.json({
     status: "Online",
-    message: "DevFinas Backend is running",
+    message: "Api FinanFlow Online 🚀",
   });
 });
 
