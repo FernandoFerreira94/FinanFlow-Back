@@ -11,6 +11,8 @@ import UpdatedPasswordUserController from "./controller/users/UpdatedPasswordUse
 import UpdatedNameController from "./controller/users/UpdatedNameController";
 import RemoveUserController from "./controller/users/RemoveUserController";
 import LoginGoogleController from "./controller/users/LoginGoogleController";
+import VerifyUserController from "./controller/users/VerifyUserController";
+import ChangePasswordController from "./controller/users/ChangePasswordController";
 
 // EXPENSE
 import CreateExpenseController from "./controller/expense/CreateExpenseController";
@@ -34,10 +36,12 @@ router.post("/auth/google", LoginGoogleController);
 
 //  USERS GET
 router.get("/user", isAuthenticated, DetailUserController);
+router.post("/user/verifyuser", VerifyUserController);
 
 //  USERS PUT
 router.put("/update/password", isAuthenticated, UpdatedPasswordUserController);
 router.put("/update/name", isAuthenticated, UpdatedNameController);
+router.put("/update/changepassword/", ChangePasswordController);
 
 // USERS DELETE
 router.delete("/user/delete/:userId", isAuthenticated, RemoveUserController);
