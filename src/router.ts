@@ -73,7 +73,7 @@ router.put(
   UpdadedExpensePaidController
 );
 router.put(
-  "/update/read/:userId/:expenseId",
+  "/update/read/:expenseId",
   isAuthenticated,
   UpdateReadExpenseController
 );

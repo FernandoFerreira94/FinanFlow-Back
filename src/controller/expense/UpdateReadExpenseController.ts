@@ -6,15 +6,13 @@ export default async function UpdateReadExpenseController(
   res: Response
 ) {
   try {
-    const { expenseId, userId } = req.params;
+    const { expenseId } = req.params;
 
-    if (!expenseId || !userId) {
-      return res
-        .status(400)
-        .json({ error: "Expense ID and User ID are required." });
+    if (!expenseId) {
+      return res.status(400).json({ error: "Expense ID are required." });
     }
 
-    const updateRead = await UpdateReadExpenseService({ expenseId, userId });
+    const updateRead = await UpdateReadExpenseService({ expenseId });
 
     return res.status(200).json(updateRead);
   } catch (error) {
